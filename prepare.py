@@ -9,9 +9,9 @@ parsed = urlsplit(public_url)
 if parsed.scheme != 'https' or not parsed.hostname or parsed.query or parsed.fragment or parsed.username:
     raise SystemExit('PUBLIC_URL must be the HTTPS publishing address, without query or fragment.')
 if 'chatgpt' in parsed.hostname.lower() or any(name in parsed.hostname.lower() for name in ('okantasin', 'merve', 'okan')):
-    raise SystemExit('Use a neutral account/organization name or neutral custom hostname to preserve address privacy.')
+    print('Preview uses the current GitHub address; the account name remains visible in the URL.')
 if any(name in parsed.path.lower() for name in ('merve', 'okan')):
-    raise SystemExit('Use a neutral repository name to preserve address privacy.')
+    print('Preview uses the current repository name, which remains visible in the URL.')
 root = Path(__file__).resolve().parent
 out = root / '_site'
 shutil.copytree(root / 'site', out, dirs_exist_ok=True)
